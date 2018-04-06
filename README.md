@@ -41,21 +41,52 @@ Javascript is automatically imported from this package.
 - 2015-06-26 upgrade to [0.97.0](https://github.com/Dogfalo/materialize/tree/v0.97.0#changelog)
   - Icon Change (*Breaking*):
 
-    ```<i class="mdi-content-add"></i>``` is still supported.
+    `<i class="mdi-content-add"></i>` is still supported.
 
-    However you should use ```<i class="material-icons">add</i>``` instead as
+    However you should use `<i class="material-icons">add</i>` instead as
     metioned in the materialize [doc](http://materializecss.com/icons.html).
 
 # FOR MAINTAINERS
 
-- HOW TO UPDATE TO NEW VERSIONS OF MATERIALIZECSS
+## Updating to New Versions of MaterializeCSS
+
+Fetch latest changes from `Dogfalo/materialize`:
+
+```sh
+$ git checkout master
+$ git pull https://github.com/Dogfalo/materialize.git master --tags
 ```
-git checkout master
-git pull https://github.com/Dogfalo/materialize.git master --tags
-git checkout meteor
-git rebase master
-// check if we need to add new files to package.js
-// change meteor package version
-// test
-meteor publish
+
+Create feature branch off of `meteor` for version upgrade:
+
+```sh
+$ git checkout meteor
+$ git checkout -b materialize-v0.100.2
 ```
+
+
+Merge in changes but do not commit:
+
+```sh
+$ git merge --no-commit --no-ff master
+```
+
+Make sure:
+
+1. Only relevant SCSS/font/package changes are included.
+2. New files have been added to `package.js`.
+3. `README.md` hasn't been mangled.
+
+Test and commit changes:
+
+```sh
+$ npm run test
+$ git commit -m "Pull in Dogfalo/materialize v0.100.2"
+# Update Meteor package version
+$ git commit -m "Bumped Meteor package version to v1.100.2"
+$ git push
+```
+
+And then open a PR! A maintainer will `meteor publish` once the PR is approved.
+
+Pat yourself on the back for being awesome.
