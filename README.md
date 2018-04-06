@@ -28,6 +28,7 @@ Javascript is automatically imported from this package.
 
 # CHANGE LOG
 
+- 2018-04-06 update to materializecss [0.100.2](https://github.com/Dogfalo/materialize/tree/v0.100.2#changelog)
 - 2016-04-18 update to materializecss [0.97.6](https://github.com/Dogfalo/materialize/tree/v0.97.6#changelog)
 - 2016-01-28 update to materializecss [0.97.5](https://github.com/Dogfalo/materialize/tree/v0.97.5#changelog)
 - 2015-11-22 update to materializecss [0.97.3](https://github.com/Dogfalo/materialize/tree/v0.97.3#changelog)

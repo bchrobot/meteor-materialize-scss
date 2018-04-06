@@ -29,14 +29,12 @@
       });
     });
 
-
     // Floating-Fixed table of contents
-
     setTimeout(function() {
       var tocWrapperHeight = 260; // Max height of ads.
       var tocHeight = $('.toc-wrapper .table-of-contents').length ? $('.toc-wrapper .table-of-contents').height() : 0;
       var socialHeight = 95; // Height of unloaded social media in footer.
-      var footerOffset = $('footer').first().length ? $('footer').first().offset().top : 0;
+      var footerOffset = $('body > footer').first().length ? $('body > footer').first().offset().top : 0;
       var bottomOffset = footerOffset - socialHeight - tocHeight - tocWrapperHeight;
 
       if ($('nav').length) {
@@ -78,6 +76,12 @@
 
     }
     checkForChanges();
+
+
+    // BuySellAds Demos close button.
+    $('.buysellads.buysellads-demo .close').on('click', function() {
+      $(this).parent().remove();
+    });
 
 
     // Github Latest Commit
@@ -139,16 +143,71 @@
       indeterminateCheckbox.indeterminate = true;
 
 
+    // Pushpin Demo Init
+    if ($('.pushpin-demo-nav').length) {
+      $('.pushpin-demo-nav').each(function() {
+        var $this = $(this);
+        var $target = $('#' + $(this).attr('data-target'));
+        $this.pushpin({
+          top: $target.offset().top,
+          bottom: $target.offset().top + $target.outerHeight() - $this.height()
+        });
+      });
+    }
+
+    // CSS Transitions Demo Init
+    if ($('#scale-demo').length &&
+        $('#scale-demo-trigger').length) {
+      $('#scale-demo-trigger').click(function() {
+        $('#scale-demo').toggleClass('scale-out');
+      });
+    }
+
+    // Swipeable Tabs Demo Init
+    if ($('#tabs-swipe-demo').length) {
+      $('#tabs-swipe-demo').tabs({ 'swipeable': true });
+    }
+
     // Plugin initialization
-    $('.carousel.carousel-slider').carousel({full_width: true});
+    $('.carousel.carousel-slider').carousel({fullWidth: true});
     $('.carousel').carousel();
-    $('.slider').slider({full_width: true});
+    $('.slider').slider();
     $('.parallax').parallax();
-    $('.modal-trigger').leanModal();
+    $('.modal').modal();
     $('.scrollspy').scrollSpy();
     $('.button-collapse').sideNav({'edge': 'left'});
     $('.datepicker').pickadate({selectYears: 20});
+    $('.timepicker').pickatime();
     $('select').not('.disabled').material_select();
+    $('input.autocomplete').autocomplete({
+      data: {"Apple": null, "Microsoft": null, "Google": 'http://placehold.it/250x250'},
+    });
+
+    // Chips
+    $('.chips').material_chip();
+    $('.chips-initial').material_chip({
+      readOnly: true,
+      data: [{
+        tag: 'Apple',
+      }, {
+        tag: 'Microsoft',
+      }, {
+        tag: 'Google',
+      }]
+    });
+    $('.chips-placeholder').material_chip({
+      placeholder: 'Enter a tag',
+      secondaryPlaceholder: '+Tag',
+    });
+    $('.chips-autocomplete').material_chip({
+      autocompleteOptions: {
+        data: {
+          'Apple': null,
+          'Microsoft': null,
+          'Google': null
+        }
+      },
+    });
 
 
   }); // end of document ready
